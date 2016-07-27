@@ -5,7 +5,7 @@
 var test = require('unit.js');
 var Victor = require('victor');
 
-describe('Ball tests', function(){
+describe('Physics tests', function(){
     it('Move object test', function(){
 
         var physics = new Physics();
@@ -20,7 +20,7 @@ describe('Ball tests', function(){
 
     });
 
-    it('Objects collision test', function(){
+    it('Objects (ball vs ball) collision test', function(){
         var physics = new Physics();
         var ballOne = new Ball();
         var ballTwo = new Ball();
@@ -34,6 +34,20 @@ describe('Ball tests', function(){
         test.bool(physics.isCollide(ballOne,ballTwo)).isTrue();
 
     });
+
+    it('Objects (ball vs obstacle) collision test', function(){
+        var physics = new Physics();
+        var ball = new Ball();
+        var obstacle = new Obstacle();
+
+        ball.setRadius(3.0);
+
+        obstacle.setStart(1.0,1.0);
+        obstacle.setEnd(5.0,5.0);
+
+        test.bool(physics.isCollide(ball,obstacle)).isTrue();
+
+    })
 
 });
 
