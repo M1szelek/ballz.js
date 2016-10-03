@@ -2,34 +2,48 @@
  * Created by Miszelek on 14.07.2016.
  */
 
+
 var test = require('unit.js');
 
+var Ball = require('../resources/js/ball.js');
+var Physics = require('../resources/js/physics.js');
+
+describe('Balls objects', function(){
+    before(function() {
+            x = 100;
+            y = 200;
+            ballOne = new Ball(x, y);
+    });
+
+    it('should be an instance of Ball', function(){
+        ballOne.should.be.an.instanceOf(Ball);
+    });
+
+});
+
 describe('Physics tests', function(){
+
     it('Move object test', function(){
 
         var physics = new Physics();
-        var ball = new Ball();
+        var ball = new Ball(0.0,0.0,0.0,0.0);
 
-        ball.setPosition(0.0,0.0);
-        ball.setVelocity(0.0,0.0);
         physics.moveObject(ball);
 
-        test.value(ball.getPosition().getX()).isEqualTo(0.0);
-        test.value(ball.getPosition().getY()).isEqualTo(0.0);
+        test.value(ball.position.x).isEqualTo(0.0);
+        test.value(ball.position.y).isEqualTo(0.0);
 
-        ball.setPosition(0.0,0.0);
-        ball.setVelocity(2.0,3.0);
+        var ball = new Ball(0.0,0.0,2.0,3.0);
         physics.moveObject(ball);
 
-        test.value(ball.getPosition().getX()).isEqualTo(2.0);
-        test.value(ball.getPosition().getY()).isEqualTo(3.0);
+        test.value(ball.position.x).isEqualTo(2.0);
+        test.value(ball.position.y).isEqualTo(3.0);
 
-        ball.setPosition(0.0,0.0);
-        ball.setVelocity(-2.0,3.0);
+        var ball = new Ball(0.0,0.0,-2.0,3.0);
         physics.moveObject(ball);
 
-        test.value(ball.getPosition().getX()).isEqualTo(-2.0);
-        test.value(ball.getPosition().getY()).isEqualTo(3.0);
+        test.value(ball.position.x).isEqualTo(-2.0);
+        test.value(ball.position.y).isEqualTo(3.0);
 
     });
 
@@ -90,10 +104,16 @@ describe('Physics tests', function(){
         ballOne.setRadius(2.0);
         ballTwo.setRadius(2.0);
 
-        ballOne.setPosition(5.0,15.0);
-        ballTwo.setPosition(6.0,16.0);
+        ballOne.setVelocity(0.0,1.0);
+        ballTwo.setVelocity(0.0,-1.0);
 
-        ballOne.setVelocity()
+        physics.reflection(ballOne, ballTwo);
+
+        test.value(ballOne.getVelocity().getX()).isEqualTo(0.0);
+        test.value(ballOne.getVelocity().getY()).isEqualTo(-1.0);
+
+        test.value(ballTwo.getVelocity().getX()).isEqualTo(0.0);
+        test.value(ballTwo.getVelocity().getY()).isEqualTo(1.0);
     })
 
 
