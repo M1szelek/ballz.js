@@ -8,38 +8,27 @@ var test = require('unit.js');
 var Ball = require('../resources/js/ball.js');
 var Physics = require('../resources/js/physics.js');
 
-describe('Balls objects', function(){
-    before(function() {
-            x = 100;
-            y = 200;
-            ballOne = new Ball(x, y);
-    });
 
-    it('should be an instance of Ball', function(){
-        ballOne.should.be.an.instanceOf(Ball);
-    });
-
-});
 
 describe('Physics tests', function(){
 
     it('Move object test', function(){
 
         var physics = new Physics();
-        var ball = new Ball(0.0,0.0,0.0,0.0);
+        var ball = new Ball(0.0,0.0,0.0,0.0,0.0);
 
         physics.moveObject(ball);
 
         test.value(ball.position.x).isEqualTo(0.0);
         test.value(ball.position.y).isEqualTo(0.0);
 
-        var ball = new Ball(0.0,0.0,2.0,3.0);
+        var ball = new Ball(0.0,0.0,0.0,2.0,3.0);
         physics.moveObject(ball);
 
         test.value(ball.position.x).isEqualTo(2.0);
         test.value(ball.position.y).isEqualTo(3.0);
 
-        var ball = new Ball(0.0,0.0,-2.0,3.0);
+        var ball = new Ball(0.0,0.0,0.0,-2.0,3.0);
         physics.moveObject(ball);
 
         test.value(ball.position.x).isEqualTo(-2.0);
@@ -49,24 +38,18 @@ describe('Physics tests', function(){
 
     it('Objects (ball vs ball) collision test', function(){
         var physics = new Physics();
-        var ballOne = new Ball();
-        var ballTwo = new Ball();
-
-        ballOne.setRadius(2.0);
-        ballTwo.setRadius(2.0);
-
-        ballOne.setPosition(0.0,0.0);
-        ballTwo.setPosition(1.0,0.0);
+        var ballOne = new Ball(2.0,0.0,0.0);
+        var ballTwo = new Ball(2.0,1.0,1.0);
 
         test.bool(physics.isCollide(ballOne,ballTwo)).isTrue();
 
         ballOne.setPosition(0.0,0.0);
-        ballTwo.setPosition(2.0,0.0);
+        ballTwo.setPosition(4.0,0.0);
 
         test.bool(physics.isCollide(ballOne,ballTwo)).isTrue();
 
         ballOne.setPosition(0.0,0.0);
-        ballTwo.setPosition(3.0,0.0);
+        ballTwo.setPosition(5.0,0.0);
 
         test.bool(physics.isCollide(ballOne,ballTwo)).isFalse();
     });

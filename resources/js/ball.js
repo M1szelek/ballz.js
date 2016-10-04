@@ -2,7 +2,12 @@ exports = module.exports = Ball;
 
 var Victor = require('victor');
 
-function Ball (positionX, positionY, velocityX, velocityY) {
+function Ball (radius, positionX, positionY, velocityX, velocityY) {
+  this.radius = radius;
   this.position = new Victor(positionX, positionY);
   this.velocity = new Victor(velocityX, velocityY);
 };
+
+Ball.prototype.setPosition = function(x, y){
+	this.position = new Victor(x,y);
+}
