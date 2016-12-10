@@ -7,7 +7,3 @@ function Ball (radius, positionX, positionY, velocityX, velocityY) {
   this.position = new Victor(positionX, positionY);
   this.velocity = new Victor(velocityX, velocityY);
 };
-
-Ball.prototype.setPosition = function(x, y){
-	this.position = new Victor(x,y);
-}

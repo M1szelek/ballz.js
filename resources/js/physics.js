@@ -8,12 +8,14 @@ Physics.prototype.moveObject = function(ball){
 	ball.position = ball.position.add(ball.velocity);
 }
 
-Physics.prototype.isCollide = function(ballOne, ballTwo){
+Physics.prototype.isBallsCollide = function(ballOne, ballTwo){
 	var distance = ballOne.position.distance(ballTwo.position);
-	var sumRadius = ballOne.radius + ballTwo.radius;
-	if(distance <= sumRadius){
-		return true;
-	}else{
-		return false;
-	}
+	var sumRadius = ballOne.radius + ballTwo.radius;	
+	return distance <= sumRadius;
+}
+
+Physics.prototype.isBallCollideObstacle = function(ballOne, ballTwo){
+	var distance = ballOne.position.distance(ballTwo.position);
+	var sumRadius = ballOne.radius + ballTwo.radius;	
+	return distance <= sumRadius;
 }

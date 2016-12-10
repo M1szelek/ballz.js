@@ -36,48 +36,88 @@ describe('Physics tests', function(){
 
     });
 
-    it('Objects (ball vs ball) collision test', function(){
+    it('Objects (ball vs ball) collision test - collision case', function(){
         var physics = new Physics();
-        var ballOne = new Ball(2.0,0.0,0.0);
-        var ballTwo = new Ball(2.0,1.0,1.0);
+        
+        var radius1 =   2.0;
+        var posX1 =     0.0;
+        var posY1 =     0.0;
 
-        test.bool(physics.isCollide(ballOne,ballTwo)).isTrue();
+        var radius2 =   2.0;
+        var posX2   =   1.0;
+        var posY2   =   1.0; 
 
-        ballOne.setPosition(0.0,0.0);
-        ballTwo.setPosition(4.0,0.0);
+        var ballOne = new Ball( radius1,
+                                posX1,
+                                posY1);
 
-        test.bool(physics.isCollide(ballOne,ballTwo)).isTrue();
+        var ballTwo = new Ball( radius2,
+                                posX2,
+                                posY2);
 
-        ballOne.setPosition(0.0,0.0);
-        ballTwo.setPosition(5.0,0.0);
+        test.bool(physics.isBallsCollide(ballOne,ballTwo)).isTrue();
 
-        test.bool(physics.isCollide(ballOne,ballTwo)).isFalse();
+        
+    });
+
+    it('Objects (ball vs ball) collision test - collision boundary case', function(){
+        var physics = new Physics();
+
+        var radius1 =   2.0;
+        var posX1 =     0.0;
+        var posY1 =     0.0;
+
+        var radius2 =   2.0;
+        var posX2   =   4.0;
+        var posY2   =   0.0; 
+
+        var ballOne = new Ball( radius1,
+                                posX1,
+                                posY1);
+
+        var ballTwo = new Ball( radius2,
+                                posX2,
+                                posY2);
+
+        test.bool(physics.isBallsCollide(ballOne,ballTwo)).isTrue();
+    });
+
+    it('Objects (ball vs ball) collision test - no collision', function(){
+        var physics = new Physics();
+
+        var radius1 =   2.0;
+        var posX1 =     0.0;
+        var posY1 =     0.0;
+
+        var radius2 =   2.0;
+        var posX2   =   5.0;
+        var posY2   =   0.0; 
+
+        var ballOne = new Ball(radius1, posX1, posY1);
+        var ballTwo = new Ball(radius2, posX2, posY2);
+
+        test.bool(physics.isBallsCollide(ballOne,ballTwo)).isFalse();
     });
 
     it('Objects (ball vs obstacle) collision test', function(){
         var physics = new Physics();
-        var ball = new Ball();
-        var obstacle = new Obstacle();
+        
+        var rad  = 2.0;
+        var posX = 0.0;
+        var posY = 0.0;
 
-        obstacle.setStart(-5.0,0.0);
-        obstacle.setEnd(5.0,5.0);
+        var ball = new Ball(rad,posX,posY);
+        
+        var obsStartX = 0.0;
+        var obsStartY = 0.0;
+        var obsEndX =   3.0;
+        var obsEndY =   3.0;
 
-        ball.setRadius(2.0);
-        ball.setPosition(0.0);
+        var obstacle = new Obstacle(obsStartX, obsStartY, obsEndX, obsEndY);
 
         test.bool(physics.isCollide(ball,obstacle)).isTrue();
 
-        ball.setRadius(2.0);
-        ball.setPosition(2.0);
-
-        test.bool(physics.isCollide(ball,obstacle)).isTrue();
-
-        ball.setRadius(2.0);
-        ball.setPosition(3.0);
-
-        test.bool(physics.isCollide(ball,obstacle)).isFalse();
-
-    })
+    });
 
     it('Objects (ball vs ball) reflection', function(){
         var physics = new Physics();
@@ -97,7 +137,9 @@ describe('Physics tests', function(){
 
         test.value(ballTwo.getVelocity().getX()).isEqualTo(0.0);
         test.value(ballTwo.getVelocity().getY()).isEqualTo(1.0);
-    })
+    });
+
+
 
 
 });
