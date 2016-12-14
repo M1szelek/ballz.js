@@ -3,7 +3,7 @@ var Ball = require('../resources/js/ball.js');
 
 describe('Balls objects', function(){
     before(function() {
-            r = 100
+            r = 100;
             px = 100;
             py = 200;
             vx = 20;
