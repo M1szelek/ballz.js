@@ -15,5 +15,5 @@ Physics.isBallsCollide = function(ballOne, ballTwo){
 }
 
 Physics.isBallCollideObstacle = function(ball, obstacle){
-
+	
 }

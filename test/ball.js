@@ -1,7 +1,6 @@
-var test = require('unit.js');
 var Ball = require('../resources/js/ball.js');
 
-describe('Balls objects', function(){
+describe('Ball object', function(){
     before(function() {
             r = 100;
             px = 100;

@@ -1,8 +1,7 @@
 exports = module.exports = Obstacle;
 
-var Victor = require('victor');
+var Segment = require('../../resources/js/segment.js');
 
 function Obstacle(startX,startY,endX,endY){
-	this.start = new Victor(startX,startY);
-	this.end = new Victor(endX,endY);
+	this.segment = new Segment(startX,startY,endX,endY);
 }

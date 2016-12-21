@@ -1,7 +1,6 @@
-var test = require('unit.js');
 var Obstacle = require('../resources/js/obstacle.js');
 
-describe('Obstacle objects', function(){
+describe('Obstacle object', function(){
 	before(function() {
             sx = 100;
             sy = 200;
@@ -14,14 +13,9 @@ describe('Obstacle objects', function(){
         obstacle.should.be.an.instanceOf(Obstacle);
     });
 
-    it('should have start', function(){
-        obstacle.should.have.property('start');
+    it('should have segment', function(){
+        obstacle.should.have.property('segment');
     });
-
-    it('should have end', function(){
-        obstacle.should.have.property('end');
-    });
-
 
 
 });

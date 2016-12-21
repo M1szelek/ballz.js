@@ -10,7 +10,7 @@ var Physics = require('../resources/js/physics.js');
 
 
 
-describe('Physics tests', function(){
+describe('Physics test', function(){
 
     it('Move object test', function(){
         var ball = new Ball(0.0,0.0,0.0,0.0,0.0);
