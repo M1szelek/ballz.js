@@ -1,12 +1,20 @@
 var Ball = require('../resources/js/ball.js');
 
+
+
 describe('Ball object', function(){
+    var _r = 2;
+    var _px = 100;
+    var _py = 200;
+    var _vx = 20;
+    var _vy = 30;
+
     before(function() {
-            r = 100;
-            px = 100;
-            py = 200;
-            vx = 20;
-            vy = 30;
+            r = _r;
+            px = _px;
+            py = _py;
+            vx = _vx;
+            vy = _vy;
             ball = new Ball(r, px, py, vx, vy);
     });
 
@@ -24,6 +32,13 @@ describe('Ball object', function(){
 
     it('should have radius', function(){
         ball.should.have.property('radius');
+    });
+
+    it('should have proper values', function(){
+        ball.radius.should.equal(_r);
+        ball.position.x.should.equal(_px);
+        ball.position.y.should.equal(_py);
+        ball.velocity.x.should.equal()
     });
 
 });

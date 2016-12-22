@@ -110,17 +110,50 @@ describe('Physics test', function(){
 
     });
 
+    it('Objects (ball vs obstacle) reflection', function(){
+        var rad  = 2.0;
+        var posX = 1.0;
+        var posY = 0.0;
+        var velX = 0.0;
+        var velY = -1.0;
+
+        var ball = new Ball(rad,posX,posY,velX,velY);
+        
+        var obsStartX = 0.0;
+        var obsStartY = 0.0;
+        var obsEndX =   3.0;
+        var obsEndY =   3.0;
+
+        var obstacle = new Obstacle(obsStartX, obsStartY, obsEndX, obsEndY);
+
+        Physics.reflectBallAgainstObstacle(ball, obstacle);
+
+        test.value(ballOne.velocity.x).isEqualTo(0.0);
+        test.value(ballOne.velocity.y).isEqualTo(-1.0);
+
+        test.value(ballTwo.velocity.x).isEqualTo(0.0);
+        test.value(ballTwo.velocity.y).isEqualTo(1.0);
+    });
+
     it('Objects (ball vs ball) reflection', function(){
-        var ballOne = new Ball();
-        var ballTwo = new Ball();
+        var rad1  = 2.0;
+        var posX1 = 1.0;
+        var posY1 = 0.0;
+        var velX1 = 0.0;
+        var velY1 = -1.0;
 
-        ballOne.setRadius(2.0);
-        ballTwo.setRadius(2.0);
+        var ballOne = new Ball(rad1,posX1,posY1,velX1,velY1);
 
-        ballOne.setVelocity(0.0,1.0);
-        ballTwo.setVelocity(0.0,-1.0);
+        var rad2  = 2.0;
+        var posX2 = 1.0;
+        var posY2 = 0.0;
+        var velX2 = 0.0;
+        var velY2 = -1.0;
 
-        Physics.reflection(ballOne, ballTwo);
+        
+        var ballTwo = new Ball(rad2,posX2,posY2,velX2,velY2);
+
+        Physics.reflectBallAgainstBall(ballOne, ballTwo);
 
         test.value(ballOne.getVelocity().getX()).isEqualTo(0.0);
         test.value(ballOne.getVelocity().getY()).isEqualTo(-1.0);
@@ -128,6 +161,8 @@ describe('Physics test', function(){
         test.value(ballTwo.getVelocity().getX()).isEqualTo(0.0);
         test.value(ballTwo.getVelocity().getY()).isEqualTo(1.0);
     });
+
+    
 
 
 
